@@ -1,0 +1,91 @@
+{
+  "ip": "103.217.111.216",
+  "hostname": "216.111.217.103.dotinternetbd.com",
+  "continent_code": "AS",
+  "continent_name": "Asia",
+  "country_code2": "BD",
+  "country_code3": "BGD",
+  "country_name": "Bangladesh",
+  "country_name_official": "People’s Republic of Bangladesh",
+  "country_capital": "Dhaka",
+  "state_prov": "Dhaka Division",
+  "state_code": "BD-C",
+  "district": "Dhaka District",
+  "city": "Dhaka",
+  "zipcode": "1207",
+  "latitude": "23.77360",
+  "longitude": "90.36109",
+  "is_eu": false,
+  "country_flag": "https://ipgeolocation.io/static/flags/bd_64.png",
+  "geoname_id": "7733111",
+  "country_emoji": "🇧🇩",
+  "calling_code": "+880",
+  "country_tld": ".bd",
+  "languages": "bn-BD,en",
+  "isp": "Dot Internet",
+  "connection_type": "",
+  "organization": "Dot Internet",
+  "asn": "AS134732",
+  "currency": {
+    "code": "BDT",
+    "name": "Bangladeshi Taka",
+    "symbol": "৳"
+  },
+  "time_zone": {
+    "name": "Asia/Dhaka",
+    "offset": 6,
+    "offset_with_dst": 6,
+    "current_time": "2026-06-07 16:12:41.564+0600",
+    "current_time_unix": 1780827161.564,
+    "current_tz_abbreviation": "BDT",
+    "current_tz_full_name": "Bangladesh Standard Time",
+    "standard_tz_abbreviation": "BDT",
+    "standard_tz_full_name": "Bangladesh Standard Time",
+    "is_dst": false,
+    "dst_savings": 0,
+    "dst_exists": false,
+    "dst_tz_abbreviation": "",
+    "dst_tz_full_name": "",
+    "dst_start": "",
+    "dst_end": ""
+  },
+  "security": {
+    "threat_score": 45,
+    "is_tor": false,
+    "is_proxy": true,
+    "proxy_type": "PROXY",
+    "is_anonymous": true,
+    "is_known_attacker": false,
+    "is_spam": false,
+    "is_bot": false,
+    "is_cloud_provider": false
+  },
+  "user_agent": {
+    "userAgentString": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+    "name": "Chrome",
+    "type": "Browser",
+    "version": "148",
+    "versionMajor": "148",
+    "build": "Unknown",
+    "device": {
+      "name": "Desktop",
+      "type": "Desktop",
+      "brand": "Unknown",
+      "cpu": "Intel x86_64"
+    },
+    "engine": {
+      "name": "Blink",
+      "type": "Browser",
+      "version": "148",
+      "versionMajor": "148",
+      "build": "Unknown"
+    },
+    "operatingSystem": {
+      "name": "Windows NT",
+      "type": "Desktop",
+      "version": "??",
+      "versionMajor": "??",
+      "build": "??"
+    }
+  }
+}
