@@ -1,30 +1,43 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, APIRequestContext } from '@playwright/test';
 import { createApiClient, createAuthorizedApiClient } from '../../helpers/apiClient';
 import { loginByApi } from '../../helpers/authHelper';
-import { API_ENDPOINTS, HTTP_STATUS } from '../../utils/constants';
+import { AuthApi } from '../../api/auth.api';
+import { expectSuccessResponse } from '../../assertions/authAssertion';
 
-test.describe('User Detail API Tests', () => {
-  test('User should get detail using login token', async () => {
-    const api = await createApiClient();
+test.describe('User Auth - Protected APIs', () => {
+  let api: APIRequestContext;
+  let authorizedApi: APIRequestContext;
+  let authApi: AuthApi;
+
+  test.beforeEach(async () => {
+    api = await createApiClient();
 
     const { token } = await loginByApi(api);
 
-    const authApi = await createAuthorizedApiClient(token);
+    authorizedApi = await createAuthorizedApiClient(token);
+    authApi = new AuthApi(authorizedApi);
+  });
 
-    const response = await authApi.get(API_ENDPOINTS.USER_DETAIL);
+  test.afterEach(async () => {
+    await api.dispose();
+    await authorizedApi.dispose();
+  });
 
-    const text = await response.text();
+  test('User should get details with valid token', async () => {
+    const response = await authApi.getUserDetail();
+    const body = await expectSuccessResponse(response);
 
-    console.log('User Detail Status:', response.status());
-    console.log('User Detail Response:', text);
-
-    expect(response.status()).toBe(HTTP_STATUS.OK);
-
-    const body = JSON.parse(text);
+    console.log('User detail response:', JSON.stringify(body, null, 2));
 
     expect(body).toBeTruthy();
+  });
 
-    await api.dispose();
-    await authApi.dispose();
+  test('User token should be valid', async () => {
+    const response = await authApi.verifyToken();
+    const body = await expectSuccessResponse(response);
+
+    console.log('Verify token response:', JSON.stringify(body, null, 2));
+
+    expect(body).toBeTruthy();
   });
 });
