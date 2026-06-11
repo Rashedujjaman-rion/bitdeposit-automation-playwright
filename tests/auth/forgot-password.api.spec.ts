@@ -8,6 +8,7 @@ import {
   extractToken,
 } from '../../assertions/authAssertion';
 import { resetPasswordData } from '../../fixtures/authData';
+import { saveCurrentUserPassword } from '../../utils/authState';
 
 function generateDynamicPassword() {
   return `Password@${Date.now()}`;
@@ -42,9 +43,11 @@ test.describe('User Auth - Forgot Password API', () => {
 
     
     const dynamicPassword = generateDynamicPassword();
+    
 
     try {
       await resetPassword(authApi, dynamicPassword);
+      saveCurrentUserPassword(dynamicPassword);
 
       const dynamicLoginResponse = await authApi.loginWithPassword(dynamicPassword);
       const dynamicLoginBody = await expectSuccessResponse(dynamicLoginResponse);

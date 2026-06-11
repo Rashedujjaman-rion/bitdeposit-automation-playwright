@@ -45,15 +45,6 @@ const webDeviceInfo = {
 };
 
 export const authQueryParams = {
-  validLogin: cleanParams({
-    identifier: ENV.USER_IDENTIFIER,
-    password: ENV.USER_PASSWORD,
-    type: ENV.LOGIN_TYPE,
-    reg_from: ENV.REG_FROM,
-    company: ENV.COMPANY,
-    remember_me: ENV.REMEMBER_ME,
-  }),
-
   invalidLogin: cleanParams({
     identifier: ENV.USER_IDENTIFIER,
     password: 'wrong-password',
@@ -87,3 +78,15 @@ export const resetPasswordData = {
   otp: ENV.RESET_OTP,
   originalPassword: ENV.USER_PASSWORD,
 };
+
+export function getValidLoginParams(password: string) {
+  return cleanParams({
+    identifier: ENV.USER_IDENTIFIER,
+    password,
+    type: ENV.LOGIN_TYPE,
+    reg_from: ENV.REG_FROM,
+    company: ENV.COMPANY,
+    remember_me: ENV.REMEMBER_ME,
+  });
+}
+

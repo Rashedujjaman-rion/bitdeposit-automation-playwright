@@ -1,6 +1,9 @@
 import { APIRequestContext } from '@playwright/test';
 import { API_ENDPOINTS } from '../utils/constants';
-import { authQueryParams, authRequestBody, resetPasswordData } from '../fixtures/authData';
+import { getCurrentUserPassword } from '../utils/authState';
+import { authQueryParams, authRequestBody, resetPasswordData, getValidLoginParams} from '../fixtures/authData';
+
+
 
 const API_TIMEOUT = 30000;
 
@@ -8,25 +11,24 @@ export class AuthApi {
   constructor(private readonly api: APIRequestContext) {}
 
   async login() {
-    return await this.api.post(API_ENDPOINTS.AUTH.LOGIN, {
-      params: authQueryParams.validLogin,
-      data: authRequestBody.loginDeviceInfo,
-      timeout: API_TIMEOUT,
-      failOnStatusCode: false,
-    });
-  }
+  const currentPassword = getCurrentUserPassword();
+
+  return await this.api.post(API_ENDPOINTS.AUTH.LOGIN, {
+    params: getValidLoginParams(currentPassword),
+    data: authRequestBody.loginDeviceInfo,
+    timeout: API_TIMEOUT,
+    failOnStatusCode: false,
+  });
+}
 
   async loginWithPassword(password: string) {
-    return await this.api.post(API_ENDPOINTS.AUTH.LOGIN, {
-      params: {
-        ...authQueryParams.validLogin,
-        password,
-      },
-      data: authRequestBody.loginDeviceInfo,
-      timeout: API_TIMEOUT,
-      failOnStatusCode: false,
-    });
-  }
+  return await this.api.post(API_ENDPOINTS.AUTH.LOGIN, {
+    params: getValidLoginParams(password),
+    data: authRequestBody.loginDeviceInfo,
+    timeout: API_TIMEOUT,
+    failOnStatusCode: false,
+  });
+}
 
   async loginWithInvalidPassword() {
     return await this.api.post(API_ENDPOINTS.AUTH.LOGIN, {
